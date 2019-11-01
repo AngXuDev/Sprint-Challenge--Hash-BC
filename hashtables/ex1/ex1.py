@@ -9,9 +9,22 @@ from hashtables import (HashTable,
 def get_indices_of_item_weights(weights, length, limit):
     ht = HashTable(16)
 
-    """
-    YOUR CODE HERE
-    """
+    # Loop through the list and store each key value pair into a hash table
+    # for i in range(length):
+    #     difference = hash_table_retrieve(ht, weights[i])
+    #     if difference is None:
+    #         hash_table_insert(ht, limit-weights[i], weights[i])
+    #     else:
+    #         return (i, weights.index(difference))
+
+    for i in range(length):
+        hash_table_insert(ht, weights[i], i)
+
+    for i, w in enumerate(weights):
+        difference = limit - w
+        exist = hash_table_retrieve(ht, difference)
+        if exist:
+            return (max(i, exist), min(i, exist))
 
     return None
 
